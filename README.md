@@ -1,6 +1,9 @@
-# supplychain
-Supply Chain Management limits manufacturing cost, and saves time in its creation cycle. Business standards have got a moment to spare supply chain where retail deals consequently single renewal requests to manufacturers. Retailers would be able to restock as fast as item is sold. One approach, is to additionally enhance this procedure and investigate the information from supply chain accomplices to see where further modifications can be made. With Supply Chain Management getting so muddled, numerous sort of developments have been done to enhance supply chain execution process. Programming strategies spread the extentfrom supplying auspicious and precise supply chain data to checking deals with the goal that manufacturers produce and ship just as a lot of supply items can be sold by lessening unneeded stock, the two manufacturers and retailers can bring down the expenses of creating, dispatching merchandise and enterprises. So there are a lot of researches on how to make the supply chainprocess faster and more efficient. Machine learning, AI techniques and algorithms are designed to make the system more durable and trustworthy.
-Researchers are seeking the solutions to make supply chain traceable and secure with fast communication measures. Etherum is the mostly used public Blockchain that is used to develop smart systems. Etherum has some developing benefits like tested development architecture and development environment. Ethurum is an open source platform mostly used for cryptocurrencies but developers are also using it for developing smart apps with the combination
+
+A Novel Approach for Supply Chain Management using IoT Hyperledger Fabric Network
+
+## Getting Started
+
+Supply Chain Management limits manufacturing cost, and saves time in its creation cycle. Business standards have got a moment to spare supply chain where retail deals consequently single renewal requests to manufacturers. Retailers would be able to restock as fast as item is sold. One approach, is to additionally enhance this procedure and investigate the information from supply chain accomplices to see where further modifications can be made. With Supply Chain Management getting so muddled, numerous sort of developments have been done to enhance supply chain execution process. Programming strategies spread the extentfrom supplying auspicious and precise supply chain data to checking deals with the goal that manufacturers produce and ship just as a lot of supply items can be sold by lessening unneeded stock, the two manufacturers and retailers can bring down the expenses of creating, dispatching merchandise and enterprises. So there are a lot of researches on how to make the supply chainprocess faster and more efficient. Machine learning, AI techniques and algorithms are designed to make the system more durable and trustworthy. Researchers are seeking the solutions to make supply chain traceable and secure with fast communication measures. Etherum is the mostly used public Blockchain that is used to develop smart systems. Etherum has some developing benefits like tested development architecture and development environment. Ethurum is an open source platform mostly used for cryptocurrencies but developers are also using it for developing smart apps with the combination
 This business network defines:
 Participants: Supplier Importer Retailer Regulator
 
@@ -8,21 +11,22 @@ Assets: ProductListingContract
 
 Transactions: createProductListing transferListing checkProducts updateExemptedList
 
-
-# Project Title
-
-One Paragraph of project description goes here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Architecture
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/arch.jpg)
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+* IBM Cloud Account
+* IBM Cloud CLI
+* Docker
+* Docker Compose - v1.8 or higher
+* NPM - v5.6.0 or higher
+* nvm - v8.11.3 (use to download and set what node version you are using)
+* Node.js - node v8.11.3 ** don't install in SUDO mode
+* Git client - v 2.9.x or higher
+* Python - 2.7.x
 ```
-Give examples
+
 ```
 
 ### Installing
@@ -32,16 +36,23 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be
 
 ```
-Give the example
+* Installing Hyperledger Composer Development Tools
+* Configure and start Hyperledger Fabric network
+* Generate the Business Network Archive (BNA)
+* Deploy the Business Network Archive using Composer Playground
+* Deploy the Business Network Archive on Hyperledger Composer running locally
 ```
 
-And repeat
+* Check installation prerequisites and clone the repo
+* Create and Access IBM Cloud Kubernetes Cluster
+* Deploy Hyperledger Fabric
+* Deploy Hyperledger Fabric SDK for Node.js
+* Deploy Node-RED
 
 ```
 until finished
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
