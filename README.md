@@ -56,10 +56,7 @@ Say what the step will be
 ## Running the tests
 
 ### 1. Installing Hyperledger Composer Development Tools
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+#### Note: You may need to run these commands in superuser sudo mode. sudo allows a permitted user to execute a command as the superuser or another user, as specified by the security policy. Additionally, you will be installing the latest version of composer-cli (0.19.5). If you have an older version installed, go ahead and remove it by using the command:
 
 ```
 Give an example
