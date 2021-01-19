@@ -67,13 +67,38 @@ npm install -g generator-hyperledger-composer@0.19.5
 ```
 npm install -g composer-rest-server@0.19.5
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
+* When combining Yeoman with the generator-hyperledger-composer component, it can interpret business networks and generate applications based on them. To install Yeoman run the following command:
 ```
-Give an example
+npm install -g yo@2.0.0
+```
+### 2. Configure and start Hyperledger Fabric network
+First download the docker files for Fabric in preparation for creating a Composer profile. Hyperledger Composer uses Connection Profiles to connect to a runtime. A Connection Profile is a JSON document that lives in the user's home directory (or may come from an environment variable) and is referenced by name when using the Composer APIs or the Command Line tools. Using connection profiles ensures that code and scripts are easily portable from one runtime instance to another.
+
+The PeerAdmin card is a special ID card used to administer the local Hyperledger Fabric. In a development installation, such as the one on your computer, the PeerAdmin ID card is created when you install the local Hyperledger Fabric.
+
+First, clone the contents of this repo locally and cd into the project folder by running these commands:
+```
+git clone https://github.com/shanibhai/supplychain.git
+cd supplychain
+```
+Create a directory fabric-dev-servers and, get the .tar.gz file that contains the tools to install Hyperledger Fabric:
+```
+mkdir ./fabric-dev-servers && cd ./fabric-dev-servers
+```
+```
+curl -O https://raw.githubusercontent.com/hyperledger/composer-tools/master/packages/fabric-dev-servers/fabric-dev-servers.tar.gz
+tar -xvf fabric-dev-servers.tar.gz
+```
+Then, start the Fabric and create a PeerAdmin card using the following commands:
+```
+./downloadFabric.sh
+./startFabric.sh
+./createPeerAdminCard.sh
+```
+For stopping the fabric, but you donnot need to stop here:
+```
+./stopFabric.sh
+./teardownFabric.sh
 ```
 
 ## Deployment
