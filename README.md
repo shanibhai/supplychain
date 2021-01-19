@@ -148,34 +148,133 @@ You should see the following output :
 
 Open Composer Playground. If you have previously used Playground, be sure to clear your browser local storage by running localStorage.clear() in your browser Console, or to use the option presented to you by [Composer Playground](http://composer-playground.mybluemix.net/).
 
-## Deployment
+Next, click the Deploy a new business network button.
 
-Add additional notes about how to deploy this on a live system
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/deploy-new-network-1.png)
 
-## Built With
+and drop the food-supply.bna file (downloaded above) in the Drop here to upload or browse area.
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/deploy-new-network-2.png)
 
-## Contributing
+Finally, click Deploy to deploy the BNA.
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Once imported, click Connect now on the admin card. You should see the following:
 
-## Versioning
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/composerplayground.png)
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+To test your Business Network Definition, first click on the Test tab:
 
-## Authors
+In the Supplier participant registry, create a new participant. Make sure you click on the Supplier tab on the far left-hand side first and click on Create New Participant button.
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/createparticipant.png)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+Enter the following information to create the supplier.
+
+```
+{
+  "$class": "composer.food.supply.Supplier",
+  "supplierId": "supplierA",
+  "countryId": "UK",
+  "orgId": "ACME"
+}
+```
+Similarly create retailer, regulator and importer participants by selecting the respective tabs and provide the information as follows:
+```
+{
+  "$class": "composer.food.supply.Retailer",
+  "retailerId": "retailerA",
+  "products": []
+}
+```
+```
+{
+  "$class": "composer.food.supply.Regulator",
+  "regulatorId": "regulatorA",
+  "location": "SF",
+  "exemptedOrgIds": ["ACME","XYZ CORP"],
+  "exemptedProductIds": ["prodA","prodB"]
+}
+```
+```
+ {
+  "$class": "composer.food.supply.Importer",
+  "importerId": "importerA"
+}
+```
+Now we are ready to add Access Control. Do this by first clicking the admin tab followed by ID Registry to issue new IDs to the participants and to add these IDs to the wallet. Please follow the instructions as shown in the images below:
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/admintab.png)
+
+Click on Issue New ID button to create new IDs.
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/generateNewId.png)
+
+Repeat the above step to also create IDs for the importer, regulator and retailer. Once you completed the creation of the four IDs, select the Supplier id from the list and click Use now.
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/selectid.png)
+
+Next, click on the test tab to perform createProductListing and transferListing transactions. Click the Submit Transaction button and select the createProductListing transaction from the dropdown to create a product listing for the list of products. The products array element contains information about the productid and quantity separated by ,.
+
+```
+ {
+  "$class": "composer.food.supply.createProductListing",
+  "listingtId": "pl1",
+  "products": ["prodA,5","prodB,2"],
+  "user": "resource:composer.food.supply.Supplier#supplierA"
+}
+```
+After executing the transaction successfully, a productListing will be created in ProductListingContract registry.
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/productListing.png)
+
+Similarly, submit a transferListing transaction to transfer the productListing to the Importer.
+
+```
+{
+  "$class": "composer.food.supply.transferListing",
+  "ownerType": "supplier",
+  "newOwner": "resource:composer.food.supply.Importer#importerA",
+  "productListing": "resource:composer.food.supply.ProductListingContract#pl1"
+}
+```
+Now importerA will be the owner of ProductListingContract and the status will be EXEMPTCHECKREQ. Also, the productListing will be removed from the Supplier view. Now select the Importer ID from the ID Registry and submit a checkProducts transaction to perform the exempt check for the products.
+
+```
+{
+  "$class": "composer.food.supply.checkProducts",
+  "regulator": "resource:composer.food.supply.Regulator#regulatorA",
+  "productListing": "resource:composer.food.supply.ProductListingContract#pl1"
+}
+```
+A successful execution of the transaction will change the status of productListing to CHECKCOMPLETED. Now perform a transferListing transaction to transfer the products to retailer.
+
+```
+{
+  "$class": "composer.food.supply.transferListing",
+  "ownerType": "importer",
+  "newOwner": "resource:composer.food.supply.Retailer#retailerA",
+  "productListing": "resource:composer.food.supply.ProductListingContract#pl1"
+}
+```
+The transaction will the change the owner of ProductListingContract and update the list of products in Retailer registry. Select the Retailer id from the ID Registry and view the updated registries.
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/retailerPL.png)
+
+![alt text](https://github.com/shanibhai/supplychain/blob/main/images/retailer.png)
+
+```
+You can also use the default System user to perform all the actions as we have a rule in permissions.acl to permit all access System user.
+```
+
+## Author
+
+* **Muhammad Rehan** - *Initial work* - [AirianzTech](https://airianztech.com)
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the APACHE License 2.0 - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* BEST OF LUCK *
