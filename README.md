@@ -14,7 +14,7 @@ Transactions: createProductListing transferListing checkProducts updateExemptedL
 ## Architecture
 ![alt text](https://github.com/shanibhai/supplychain/blob/main/images/arch.jpg)
 
-### Prerequisites
+## Prerequisites
 
 * IBM Cloud Account
 * IBM Cloud CLI
@@ -29,7 +29,7 @@ Transactions: createProductListing transferListing checkProducts updateExemptedL
 
 ```
 
-### Installing
+## Installing
 
 A step by step series of examples that tell you how to get a development env running
 
@@ -47,7 +47,7 @@ A step by step series of examples that tell you how to get a development env run
 * Deploy Hyperledger Fabric SDK for Node.js
 * Deploy Node-RED
 
-## Running the tests
+## Step by step deployment
 
 ### 1. Installing Hyperledger Composer Development Tools
 #### Note: You may need to run these commands in superuser sudo mode. sudo allows a permitted user to execute a command as the superuser or another user, as specified by the security policy. Additionally, you will be installing the latest version of composer-cli (0.19.5). If you have an older version installed, go ahead and remove it by using the command:
@@ -100,6 +100,53 @@ For stopping the fabric, but you donnot need to stop here:
 ./stopFabric.sh
 ./teardownFabric.sh
 ```
+### 3. Generate the Business Network Archive (BNA)
+To check that the structure of the files is valid, you can now generate a Business Network Archive (BNA) file for your business network definition. The BNA file is the deployable unit -- a file that can be deployed to the Composer runtime for execution.
+
+Use the following command to generate the network archive:
+```
+npm install
+```
+You should see the following output:
+```
+Creating Business Network Archive
+
+Looking for package.json of Business Network Definition
+	Input directory: /Users/ishan/Documents/git-demo/supplychain
+
+Found:
+	Description: Sample food supplier verification network
+	Name: food-supply
+	Identifier: food-supply@0.0.1
+
+Written Business Network Definition Archive file to
+	Output file: ./dist/food-supply.bna
+
+Command succeeded
+```
+The composer archive create command has created a file called food-supply.bna in the dist folder.
+
+You can test the business network definition against the embedded runtime that stores the state of 'the blockchain' in-memory in a Node.js process. From your project working directory, open the file test/foodTest.js and run the following command:
+
+```
+npm test
+```
+You should see the following output :
+```
+> food-supply@0.0.1 test /Users/ishan/Documents/demo/supplychain
+> mocha --recursive
+
+  #composer.food.supply
+    ✓ Transfer ProductListing to Importer (67ms)
+    ✓ Exempt Check for ProductListing (98ms)
+    ✓ Transfer ProductListing to Retailer (95ms)
+
+  3 passing (2s)
+  ```
+  
+ ### 4. Deploy the Business Network Archive using Composer Playground
+
+Open Composer Playground. If you have previously used Playground, be sure to clear your browser local storage by running localStorage.clear() in your browser Console, or to use the option presented to you by [Composer Playground](http://composer-playground.mybluemix.net/).
 
 ## Deployment
 
