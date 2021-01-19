@@ -33,8 +33,6 @@ Transactions: createProductListing transferListing checkProducts updateExemptedL
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
-
 ```
 * Installing Hyperledger Composer Development Tools
 * Configure and start Hyperledger Fabric network
@@ -49,17 +47,25 @@ Say what the step will be
 * Deploy Hyperledger Fabric SDK for Node.js
 * Deploy Node-RED
 
-```
-```
-
-
 ## Running the tests
 
 ### 1. Installing Hyperledger Composer Development Tools
 #### Note: You may need to run these commands in superuser sudo mode. sudo allows a permitted user to execute a command as the superuser or another user, as specified by the security policy. Additionally, you will be installing the latest version of composer-cli (0.19.5). If you have an older version installed, go ahead and remove it by using the command:
 
 ```
-Give an example
+npm uninstall -g composer-cli
+```
+* The composer-cli contains all the command line operations for developing business networks. To install composer-cli run the following command:
+```
+npm install -g composer-cli@0.19.5
+```
+* The generator-hyperledger-composer is a Yeoman plugin that creates bespoke (e.g. customized) applications for your business network. Yeoman is an open source client-side development stack, consisting of tools and frameworks intended to help developers build web applications. To install generator-hyperledger-composer run the following command:
+```
+npm install -g generator-hyperledger-composer@0.19.5
+```
+* The composer-rest-server uses the Hyperledger Composer LoopBack Connector to connect to a business network, extract the models and then present a page containing the REST APIs that have been generated for the model. To install composer-rest-server run the following command:
+```
+npm install -g composer-rest-server@0.19.5
 ```
 
 ### And coding style tests
