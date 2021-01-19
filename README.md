@@ -50,13 +50,12 @@ Say what the step will be
 * Deploy Node-RED
 
 ```
-until finished
 ```
 
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+### 1. Installing Hyperledger Composer Development Tools
 
 ### Break down into end to end tests
 
